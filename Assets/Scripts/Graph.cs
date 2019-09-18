@@ -6,10 +6,30 @@ using UnityEngine;
 public class Graph : MonoBehaviour
 {
     public Transform pointPrefab;
+
+
     [Range(10, 100)]
-    // public List<Transform> pointPrefabs;
     public int resolution = 10;
+    [Header("Position functions")]
+    public GraphFunctionNamePosX functionPosX;
+    public GraphFunctionNamePosY functionPosY;
+    public GraphFunctionNamePosZ functionPosZ;
+    [Header("Rotation functions")]
+    public GraphFunctionNameRotX functionRotX;
+    public GraphFunctionNameRotY functionRotY;
+    public GraphFunctionNameRotZ functionRotZ;
+
     public Transform[] points;
+    static GraphFunction[] functions =
+       {
+        null,
+        SineFunction,
+        MultiSineFunction,
+        CosFunction,
+        MultiCosFunction,
+        TanFunction,
+        MultiTanFunction,
+       };
     private void Awake()
     {
         float step = 2f / resolution;
@@ -25,47 +45,104 @@ public class Graph : MonoBehaviour
         {
             // local transform = new instantiated prefab
             Transform point = Instantiate(pointPrefab);
+            //change position axis
             position.x = (i + 0.5f) * step - 1f;
             position.y = position.x * position.x;
-            position.z = (position.y + step) * (position.x + step);
-            rotation.x = i * step;
-            rotation.y = i * step;
-            rotation.z = i * step;
+            // position.z = (position.y) * (position.x + step);
+            //rotation axis change
+            rotation.x = i;
+            rotation.y = i;
+            rotation.z = i;
+            //apply new changes to local 
             point.localPosition = position;
             point.localScale = scale;
             point.localRotation = rotation;
+            //set to parent
             point.SetParent(transform, false);
             points[i] = point;
         }
     }
+    // get an array instance, make array of functions so you can pick which one to run
+
     private void Update()
     {
+        float t = Time.time;
+
+
+        // declared delegate so it can be invoked like a method
+        GraphFunction posX = functions[(int)functionPosX];
+        GraphFunction posY = functions[(int)functionPosY];
+        GraphFunction posZ = functions[(int)functionPosZ];
+
+        GraphFunction rotX = functions[(int)functionRotX];
+        GraphFunction rotY = functions[(int)functionRotY];
+        GraphFunction rotZ = functions[(int)functionRotZ];
+
+        // for each object change their position, rotation and scale 
         for (int i = 0; i < points.Length; i++)
         {
             Transform point = points[i];
             Vector3 position = point.localPosition;
             Quaternion rotation = point.localRotation;
+            //position
             // X
-            // position.x = Mathf.Sin(Mathf.PI * (position.z + Time.time)) ; // Sin
-            // position.x = Mathf.Cos(Mathf.PI * (position.z + Time.time)) ; // Cos
-            // position.x = Mathf.Tan(Mathf.PI * (position.z + Time.time)) ; // Tan
+            if (posX != null) position.x = posX(position.y, t);
             // Y
-
-            // position.y = Mathf.Sin(Mathf.PI * (position.x + Time.time)); // Sin 
-            // position.y = Mathf.Cos(Mathf.PI * (position.x + Time.time)); // Cos 
-            // position.y = Mathf.Tan(Mathf.PI * (position.x + Time.time)); // Tan 
-
+            if (posY != null) position.y = posY(position.x, t);
             // Z
-            // position.z = Mathf.Sin(Mathf.PI * (position.y + Time.time)); // Sin
-            // position.z = Mathf.Cos(Mathf.PI * (position.y + Time.time)); // Cos
-            // position.z = Mathf.Tan(Mathf.PI * (position.y + Time.time)); // Tan
+            if (posZ != null) position.z = posZ(position.y, t);
+            //rotation  
+            // X
+            if (rotX != null) rotation.x = rotX(position.x, t);
+            // Y
+            if (rotY != null) rotation.y = rotY(position.y, t);
+            // Z
+            if (rotZ != null) rotation.z = rotZ(position.z, t);
 
-            rotation.x = i * position.x + Time.time;
-            rotation.y = i * position.y + Time.time;
-            rotation.z = i * position.z + Time.time;
+
+            // apply changes
             point.localPosition = position;
             point.localRotation = rotation;
         }
     }
-
+    //Sin Cos and Tan functions to modify rotation, scale and position in update
+    #region Sin
+    static float SineFunction(float x, float t)
+    {
+        return Mathf.Sin(Mathf.PI * (x + t));
+    }
+    static float MultiSineFunction(float x, float t)
+    {
+        float sine = Mathf.Sin(Mathf.PI * (x + t));
+        sine += Mathf.Sin(2f * Mathf.PI * (x + 2f * t)) / 2f;
+        sine *= 2f / 3f;
+        return sine;
+    }
+    #endregion
+    #region Cos
+    static float CosFunction(float x, float t)
+    {
+        return Mathf.Cos(Mathf.PI * (x + t));
+    }
+    static float MultiCosFunction(float x, float t)
+    {
+        float cosine = Mathf.Cos(Mathf.PI * (x + t));
+        cosine += Mathf.Cos(2f * Mathf.PI * (x + 2f * t)) / 2f;
+        cosine *= 2f / 3f;
+        return cosine;
+    }
+    #endregion
+    #region Tan
+    static float TanFunction(float x, float t)
+    {
+        return Mathf.Tan(Mathf.PI * (x + t));
+    }
+    static float MultiTanFunction(float x, float t)
+    {
+        float tangent = Mathf.Tan(Mathf.PI * (x + t));
+        tangent += Mathf.Tan(2f * Mathf.PI * (x + 2f * t)) / 2f;
+        tangent *= 2f / 3f;
+        return tangent;
+    }
+    #endregion
 }

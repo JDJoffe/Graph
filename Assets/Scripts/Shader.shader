@@ -45,7 +45,7 @@
             // Albedo comes from a texture tinted by color
 			o.Albedo.rg = modulo(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5);
 		//	o.Albedo.rg = Sin(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5);
-		//	modf(Sin(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5));
+			//modf(Sin(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5));
             // Metallic and smoothness come from slider variables
 			//o.Albedo.rgb = fmod(IN.worldPos.x*10, 1) < 0 ? 0 : tex2D(_MainTex, IN.uv_MainTex);
             o.Metallic = _Metallic;
