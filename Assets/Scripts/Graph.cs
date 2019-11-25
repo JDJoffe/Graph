@@ -25,6 +25,7 @@ public class Graph : MonoBehaviour
         null,
         SineFunction,
         MultiSineFunction,
+        Sine2D,
         CosFunction,
         MultiCosFunction,
         TanFunction,
@@ -36,17 +37,21 @@ public class Graph : MonoBehaviour
         Vector3 scale = Vector3.one * step;
         Vector3 position = Vector3.zero;
         Quaternion rotation = Quaternion.Euler(1, 1, 1);
-        points = new Transform[resolution];
+        points = new Transform[resolution * resolution];
         // increments i then returns it
         // ++i;
         // returns i then increments it
         // i++;
-        for (int i = 0; i < points.Length; i++)
+        for (int i = 0,z=0; z < resolution; z++)
         {
+             position.z = (z + 0.5f) * step - 1f;
+           for(int x = 0; x < resolution; x++,i++)
+           {
             // local transform = new instantiated prefab
             Transform point = Instantiate(pointPrefab);
             //change position axis
-            position.x = (i + 0.5f) * step - 1f;
+            position.x = (x + 0.5f) * step - 1f;
+           
             position.y = position.x * position.x;
             // position.z = (position.y) * (position.x + step);
             //rotation axis change
@@ -60,6 +65,7 @@ public class Graph : MonoBehaviour
             //set to parent
             point.SetParent(transform, false);
             points[i] = point;
+           }
         }
     }
     // get an array instance, make array of functions so you can pick which one to run
@@ -86,18 +92,18 @@ public class Graph : MonoBehaviour
             Quaternion rotation = point.localRotation;
             //position
             // X
-            if (posX != null) position.x = posX(position.y, t);
+            if (posX != null) position.x = posX(position.y, t, position.z);
             // Y
-            if (posY != null) position.y = posY(position.x, t);
+            if (posY != null) position.y = posY(position.x, t,position.z);
             // Z
-            if (posZ != null) position.z = posZ(position.y, t);
+            if (posZ != null) position.z = posZ(position.y, t, position. z);
             //rotation  
             // X
-            if (rotX != null) rotation.x = rotX(position.x, t);
+            if (rotX != null) rotation.x = rotX(position.x, t, position.z);
             // Y
-            if (rotY != null) rotation.y = rotY(position.y, t);
+            if (rotY != null) rotation.y = rotY(position.y, t,position.z);
             // Z
-            if (rotZ != null) rotation.z = rotZ(position.z, t);
+            if (rotZ != null) rotation.z = rotZ(position.z, t,position.z);
 
 
             // apply changes
@@ -105,42 +111,51 @@ public class Graph : MonoBehaviour
             point.localRotation = rotation;
         }
     }
+    const float pi = Mathf.PI;
     //Sin Cos and Tan functions to modify rotation, scale and position in update
     #region Sin
-    static float SineFunction(float x, float t)
+    static float SineFunction(float x, float t, float z)
     {
-        return Mathf.Sin(Mathf.PI * (x + t));
+        return Mathf.Sin(pi * (x + t));
     }
-    static float MultiSineFunction(float x, float t)
+    static float MultiSineFunction(float x, float t, float z)
     {
-        float sine = Mathf.Sin(Mathf.PI * (x + t));
-        sine += Mathf.Sin(2f * Mathf.PI * (x + 2f * t)) / 2f;
+        float sine = Mathf.Sin(pi * (x + t));
+        sine += Mathf.Sin(2f * pi * (x + 2f * t)) / 2f;
         sine *= 2f / 3f;
         return sine;
     }
+    static float Sine2D(float x, float t, float z)
+    {
+      //  return Mathf.Sin(pi*(x + t + z));
+      float y = Mathf.Sin(pi *(x + t));
+      y += Mathf.Sin(pi * ( z + t));
+      // do this instead of y /= 2 because multiplication is faster
+      y *= 0.5f;
+    }
     #endregion
     #region Cos
-    static float CosFunction(float x, float t)
+    static float CosFunction(float x, float t, float z)
     {
-        return Mathf.Cos(Mathf.PI * (x + t));
+        return Mathf.Cos(pi * (x + t));
     }
-    static float MultiCosFunction(float x, float t)
+    static float MultiCosFunction(float x, float t, float z)
     {
-        float cosine = Mathf.Cos(Mathf.PI * (x + t));
-        cosine += Mathf.Cos(2f * Mathf.PI * (x + 2f * t)) / 2f;
+        float cosine = Mathf.Cos(pi * (x + t));
+        cosine += Mathf.Cos(2f * pi * (x + 2f * t)) / 2f;
         cosine *= 2f / 3f;
         return cosine;
     }
     #endregion
     #region Tan
-    static float TanFunction(float x, float t)
+    static float TanFunction(float x, float t, float z)
     {
-        return Mathf.Tan(Mathf.PI * (x + t));
+        return Mathf.Tan(pi * (x + t));
     }
-    static float MultiTanFunction(float x, float t)
+    static float MultiTanFunction(float x, float t, float z)
     {
-        float tangent = Mathf.Tan(Mathf.PI * (x + t));
-        tangent += Mathf.Tan(2f * Mathf.PI * (x + 2f * t)) / 2f;
+        float tangent = Mathf.Tan(pi * (x + t));
+        tangent += Mathf.Tan(2f * pi * (x + 2f * t)) / 2f;
         tangent *= 2f / 3f;
         return tangent;
     }
