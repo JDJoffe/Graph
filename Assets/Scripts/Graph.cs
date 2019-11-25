@@ -132,6 +132,7 @@ public class Graph : MonoBehaviour
       y += Mathf.Sin(pi * ( z + t));
       // do this instead of y /= 2 because multiplication is faster
       y *= 0.5f;
+      return y;
     }
     #endregion
     #region Cos
