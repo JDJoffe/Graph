@@ -3,74 +3,158 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // All these enums are so i can select exactly what combination of functions i want to use in the inspector
-
-public enum GraphFunctionNamePosX
+public enum GraphFunctionName
 {
-    NULL,
+         NULL,
+// sin
     Sine,
     MultiSine,
-    Sine2D,
+     Sine2D,
+     MultiSine2D,
+     // cos
     Cos,
     MultiCos,
+      Cos2D,
+   MultiCos2D,
+   // tan
     Tan,
-    MultiTan
+    MultiTan,
+       Tan2D,
+   MultiTan2D,
+   // extra
+   SinRipple
+}
+public enum GraphFunctionNamePosX
+{
+       NULL,
+// sin
+    Sine,
+    MultiSine,
+     Sine2D,
+     MultiSine2D,
+     // cos
+    Cos,
+    MultiCos,
+      Cos2D,
+   MultiCos2D,
+   // tan
+    Tan,
+    MultiTan,
+       Tan2D,
+   MultiTan2D,
+   // extra
+   SinRipple
   
 }
 public enum GraphFunctionNamePosY
 {
    NULL,
-   Sine,
-   MultiSine,
-   Sine2D,
-   Cos,
-   MultiCos,
-   Tan,
-   MultiTan,
+// sin
+    Sine,
+    MultiSine,
+     Sine2D,
+     MultiSine2D,
+     // cos
+    Cos,
+    MultiCos,
+      Cos2D,
+   MultiCos2D,
+   // tan
+    Tan,
+    MultiTan,
+       Tan2D,
+   MultiTan2D,
+   // extra
+    SinRipple
  
 }
 public enum GraphFunctionNamePosZ
 {
-    NULL,
+      NULL,
+// sin
     Sine,
     MultiSine,
-    Sine2D,
+     Sine2D,
+     MultiSine2D,
+     // cos
     Cos,
     MultiCos,
+      Cos2D,
+   MultiCos2D,
+   // tan
     Tan,
-    MultiTan
+    MultiTan,
+       Tan2D,
+   MultiTan2D,
+   // extra
+   SinRipple
   
 }
 public enum GraphFunctionNameRotX
 {
-    NULL,
+      NULL,
+// sin
     Sine,
     MultiSine,
+     Sine2D,
+     MultiSine2D,
+     // cos
     Cos,
     MultiCos,
+      Cos2D,
+   MultiCos2D,
+   // tan
     Tan,
-    MultiTan
+    MultiTan,
+       Tan2D,
+   MultiTan2D,
+   // extra
+   SinRipple
   
 
 }
 public enum GraphFunctionNameRotY
 {
-    NULL,
+     NULL,
+// sin
     Sine,
     MultiSine,
+     Sine2D,
+     MultiSine2D,
+     // cos
     Cos,
     MultiCos,
+      Cos2D,
+   MultiCos2D,
+   // tan
     Tan,
-    MultiTan
+    MultiTan,
+       Tan2D,
+   MultiTan2D,
+   // extra
+   SinRipple
   
 }
 public enum GraphFunctionNameRotZ
-{   NULL,
+{ 
+      NULL,
+// sin
     Sine,
     MultiSine,
+     Sine2D,
+     MultiSine2D,
+     // cos
     Cos,
     MultiCos,
+      Cos2D,
+   MultiCos2D,
+   // tan
     Tan,
-    MultiTan
+    MultiTan,
+       Tan2D,
+   MultiTan2D,
+   // extra
+   SinRipple
    
 }
 

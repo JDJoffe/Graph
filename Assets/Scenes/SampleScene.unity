@@ -144,9 +144,10 @@ MonoBehaviour:
   pointPrefab: {fileID: 7351132331925870744, guid: 36720eb1f0f98814da6741a3ef72d78d,
     type: 3}
   resolution: 50
-  functionPosX: 1
+  functionName: 1
+  functionPosX: 0
   functionPosY: 0
-  functionPosZ: 3
+  functionPosZ: 0
   functionRotX: 0
   functionRotY: 0
   functionRotZ: 0
