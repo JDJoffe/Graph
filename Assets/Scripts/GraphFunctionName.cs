@@ -22,139 +22,161 @@ public enum GraphFunctionName
        Tan2D,
    MultiTan2D,
    // extra
-   SinRipple
+   SinRipple,
+   Cylinder,
+   Sphere,
+    Torus
 }
-public enum GraphFunctionNamePosX
-{
-       NULL,
-// sin
-    Sine,
-    MultiSine,
-     Sine2D,
-     MultiSine2D,
-     // cos
-    Cos,
-    MultiCos,
-      Cos2D,
-   MultiCos2D,
-   // tan
-    Tan,
-    MultiTan,
-       Tan2D,
-   MultiTan2D,
-   // extra
-   SinRipple
+#region old
+// public enum GraphFunctionNamePosX
+// {
+//        NULL,
+// // sin
+//     Sine,
+//     MultiSine,
+//      Sine2D,
+//      MultiSine2D,
+//      // cos
+//     Cos,
+//     MultiCos,
+//       Cos2D,
+//    MultiCos2D,
+//    // tan
+//     Tan,
+//     MultiTan,
+//        Tan2D,
+//    MultiTan2D,
+//    // extra
+//    SinRipple,
+//     Cylinder,
+//    Sphere,
+//     Torus
   
-}
-public enum GraphFunctionNamePosY
-{
-   NULL,
-// sin
-    Sine,
-    MultiSine,
-     Sine2D,
-     MultiSine2D,
-     // cos
-    Cos,
-    MultiCos,
-      Cos2D,
-   MultiCos2D,
-   // tan
-    Tan,
-    MultiTan,
-       Tan2D,
-   MultiTan2D,
-   // extra
-    SinRipple
+// }
+// public enum GraphFunctionNamePosY
+// {
+//    NULL,
+// // sin
+//     Sine,
+//     MultiSine,
+//      Sine2D,
+//      MultiSine2D,
+//      // cos
+//     Cos,
+//     MultiCos,
+//       Cos2D,
+//    MultiCos2D,
+//    // tan
+//     Tan,
+//     MultiTan,
+//        Tan2D,
+//    MultiTan2D,
+//    // extra
+//     SinRipple,
+//      Cylinder,
+//    Sphere,
+//     Torus
  
-}
-public enum GraphFunctionNamePosZ
-{
-      NULL,
-// sin
-    Sine,
-    MultiSine,
-     Sine2D,
-     MultiSine2D,
-     // cos
-    Cos,
-    MultiCos,
-      Cos2D,
-   MultiCos2D,
-   // tan
-    Tan,
-    MultiTan,
-       Tan2D,
-   MultiTan2D,
-   // extra
-   SinRipple
+// }
+// public enum GraphFunctionNamePosZ
+// {
+//       NULL,
+// // sin
+//     Sine,
+//     MultiSine,
+//      Sine2D,
+//      MultiSine2D,
+//      // cos
+//     Cos,
+//     MultiCos,
+//       Cos2D,
+//    MultiCos2D,
+//    // tan
+//     Tan,
+//     MultiTan,
+//        Tan2D,
+//    MultiTan2D,
+//    // extra
+//    SinRipple,
+//     Cylinder,
+//    Sphere,
+//    Torus
   
-}
-public enum GraphFunctionNameRotX
-{
-      NULL,
-// sin
-    Sine,
-    MultiSine,
-     Sine2D,
-     MultiSine2D,
-     // cos
-    Cos,
-    MultiCos,
-      Cos2D,
-   MultiCos2D,
-   // tan
-    Tan,
-    MultiTan,
-       Tan2D,
-   MultiTan2D,
-   // extra
-   SinRipple
+// }
+// public enum GraphFunctionNameRotX
+// {
+//       NULL,
+// // sin
+//     Sine,
+//     MultiSine,
+//      Sine2D,
+//      MultiSine2D,
+//      // cos
+//     Cos,
+//     MultiCos,
+//       Cos2D,
+//    MultiCos2D,
+//    // tan
+//     Tan,
+//     MultiTan,
+//        Tan2D,
+//    MultiTan2D,
+//    // extra
+//    SinRipple,
+//     Cylinder,
+//    Sphere,
+//     Torus
   
 
-}
-public enum GraphFunctionNameRotY
-{
-     NULL,
-// sin
-    Sine,
-    MultiSine,
-     Sine2D,
-     MultiSine2D,
-     // cos
-    Cos,
-    MultiCos,
-      Cos2D,
-   MultiCos2D,
-   // tan
-    Tan,
-    MultiTan,
-       Tan2D,
-   MultiTan2D,
-   // extra
-   SinRipple
+// }
+// public enum GraphFunctionNameRotY
+// {
+//      NULL,
+// // sin
+//     Sine,
+//     MultiSine,
+//      Sine2D,
+//      MultiSine2D,
+//      // cos
+//     Cos,
+//     MultiCos,
+//       Cos2D,
+//    MultiCos2D,
+//    // tan
+//     Tan,
+//     MultiTan,
+//        Tan2D,
+//    MultiTan2D,
+//    // extra
+//    SinRipple,
+//     Cylinder,
+//    Sphere,
+//     Torus
   
-}
-public enum GraphFunctionNameRotZ
-{ 
-      NULL,
-// sin
-    Sine,
-    MultiSine,
-     Sine2D,
-     MultiSine2D,
-     // cos
-    Cos,
-    MultiCos,
-      Cos2D,
-   MultiCos2D,
-   // tan
-    Tan,
-    MultiTan,
-       Tan2D,
-   MultiTan2D,
-   // extra
-   SinRipple
+// }
+// public enum GraphFunctionNameRotZ
+// { 
+//       NULL,
+// // sin
+//     Sine,
+//     MultiSine,
+//      Sine2D,
+//      MultiSine2D,
+//      // cos
+//     Cos,
+//     MultiCos,
+//       Cos2D,
+//    MultiCos2D,
+//    // tan
+//     Tan,
+//     MultiTan,
+//        Tan2D,
+//    MultiTan2D,
+//    // extra
+//    SinRipple,
+//     Cylinder,
+//    Sphere,
+//     Torus
    
-}
-
+// }
+#endregion

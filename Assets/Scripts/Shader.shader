@@ -23,16 +23,28 @@
         struct Input
         {
             float3 worldPos;
-			//float2 uv_MainTex;
+			float2 uv_MainTex;
         };
 
         half _Glossiness;
         half _Metallic;
+        // world pos bad boy
 		float2 modulo(float2 divident, float2 divisor)
 		{
 			float2 positiveDivident = divident % divisor + divisor;
 			return positiveDivident % divisor;
 		}
+        // sin fun
+        float random(float2 r)
+        {
+            //                                 |
+           // sin madness    make it brighter V
+            return  sin(sin(r.x)*3.14*5)*.5+.75;
+        }
+// big bad noise
+        float rand(float2 co){
+            return frac(sin(dot(co.xy ,float2(12.9898,78.233))) * 43758.5453);
+        }
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
         // #pragma instancing_options assumeuniformscaling
@@ -43,9 +55,12 @@
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
-			o.Albedo.rg = modulo(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5);
-		//	o.Albedo.rg = Sin(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5);
-			//modf(Sin(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5));
+			//o.Albedo.rgb = modulo(normalize(IN.worldPos.xyz),random(IN.worldPos.xyz));
+			//o.Albedo.rg = random(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5);
+
+            // albedo is based on sin * worldpos
+            o.Albedo.rgb = float3(random(IN.worldPos.xy), random(IN.worldPos.yz), random(IN.worldPos.zx));
+			//modf(random(float2(IN.worldPos.x,IN.worldPos.y), IN.worldPos.xy * 0.5 + 0.5));
             // Metallic and smoothness come from slider variables
 			//o.Albedo.rgb = fmod(IN.worldPos.x*10, 1) < 0 ? 0 : tex2D(_MainTex, IN.uv_MainTex);
             o.Metallic = _Metallic;
