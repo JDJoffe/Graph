@@ -346,5 +346,25 @@ public class Graph : MonoBehaviour
     p.z = z;
     return p;
     }
+    static Vector3 Cylinder(float x,float t,float z)
+    {
+        Vector3 p;
+       // float r = 1f + Mathf.Sin(6*pi*u)*0.2f;
+      // float r = 1 + Mathf.Sin(2f * pi * z)*0.2f;
+      float r = 0.8f +  Mathf.Sin(pi*(6f*x + 2f *z + t))*0.2f;
+        p.x =r* Mathf.Sin(pi*x);
+        p.y = z;
+        p.z =r* Mathf.Cos(pi * x);
+        return p;
+    }
+    static Vector3 Sphere (float x, float t, float z )
+    {
+        Vector3 p;
+        float r = Mathf.Cos(pi*0.5f*z);
+        p.x = r * Mathf.Sin(pi * x);
+        p.y = z;
+        p.z = r*Mathf.Cos(pi*x);
+        return p;
+    }
     #endregion
 }
